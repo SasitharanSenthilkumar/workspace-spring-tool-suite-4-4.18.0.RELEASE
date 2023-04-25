@@ -1,0 +1,30 @@
+package com.cricket.demo.service;
+
+@Service
+public class CricketService {
+	@Autowired
+	CricketRepository cricksRepository;
+	public List<Cricket> getAllCricket(){
+		List<Cricket> cricksList = cricksRepository.findAll();
+	}
+	public cricket saveCricket(Cricket c)
+	{
+		Cricket obj = cricksRepository.save(c);
+		return obj;
+	}
+	public Cricket updateCricket(Cricket c)
+	{
+		Cricket obj = cricksRepository.save(c);
+		return obj;
+	}
+	public void deleteCricket(int number)
+	{
+		cricksRepository.deleteById(number);
+	}
+	public ricket getCricket(int number)
+	{
+		Cricket c = cricksRepository.findById(number).get();
+		return c;
+	}
+
+}

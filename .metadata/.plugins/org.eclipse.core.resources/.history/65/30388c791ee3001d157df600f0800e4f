@@ -1,0 +1,33 @@
+package com.cricket.demo.controller;
+
+public class CricketController {
+   @Autowired
+   CricketService cricksService;
+   @GetMapping("/cricket")
+   public List<cricket> getAllCricket()
+   {
+	   List<cricket> cricksList = cricksService.getAllCricket();
+	   return cricksList;
+	   
+   }
+   @PostMapping(value="saveCricket")
+   public Cricket saveCricket( Cricket c )
+   {
+	   return cricksService.saveCricket(c);
+   }
+   @putMapping(value="/updateCricket")
+   public Cricket updateCricket(Cricket c)
+   {
+	   return cricksService.saveCricket(c);
+   }
+   @DeleteMapping(value="/deleteCricket/(number)")
+   public void deleteCricket(@PathVariable("number") int number)
+   {
+	   cricksService.deleteCricket(number);
+   }
+   @GetMapping(value="/getCricket/(number")
+   public Cricket getCricket(@PathVariable("number")
+   {
+	   return cricksService.getCricket(number);
+   }
+}

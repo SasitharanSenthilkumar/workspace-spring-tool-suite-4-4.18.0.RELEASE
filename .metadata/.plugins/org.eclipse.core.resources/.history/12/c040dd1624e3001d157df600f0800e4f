@@ -1,0 +1,41 @@
+package com.cricket.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cricket.demo.model.CricketModel;
+import com.cricket.demo.repository.CricketRepository;
+
+@Service
+public class CricketService {
+	@Autowired
+
+ cricksRepository rpos;
+	public List<CricketModel> getAllCricket()
+	{
+		List<CricketModel> cricksList = rpos.findAll();
+		return cricksList;
+	}
+	public CricketModel saveCricket(CricketModel c)
+	{
+		CricketModel obj = cricksRepository.save(c);
+		return obj;
+	}
+	public CricketModel updateCricket(Cricket c)
+	{
+		CricketModel obj = cricksRepository.save(c);
+		return obj;
+	}
+	public void deleteCricket(int number)
+	{
+		cricksRepository.deleteById(number);
+	}
+	public CricketModel getCricket(int number)
+	{
+		Cricket c = cricksRepository.findById(number).get();
+		return c;
+	}
+
+}

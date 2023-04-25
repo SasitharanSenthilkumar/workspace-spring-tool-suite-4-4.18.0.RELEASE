@@ -1,0 +1,38 @@
+package com.cricket.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.cricket.demo.service.CricketService;
+
+public class CricketController {
+   @Autowired
+   CricketService cricksService;
+   @GetMapping("/cricket")
+   public L<CricketModel> getAllCricket()
+   {
+	   List<cricket> cricksList = cricksService.getAllCricket();
+	   return cricksList;
+	   
+   }
+   @PostMapping(value="saveCricket")
+   public Cricket saveCricket( Cricket c )
+   {
+	   return cricksService.saveCricket(c);
+   }
+   @putMapping(value="/updateCricket")
+   public Cricket updateCricket(Cricket c)
+   {
+	   return cricksService.saveCricket(c);
+   }
+   @DeleteMapping(value="/deleteCricket/(number)")
+   public void deleteCricket(@PathVariable("number") int number)
+   {
+	   cricksService.deleteCricket(number);
+   }
+   @GetMapping(value="/getCricket/(number")
+   public Cricket getCricket(@PathVariable("number")
+   {
+	   return cricksService.getCricket(number);
+   }
+}
