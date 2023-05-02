@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.cricket.demo.model.CricketModel;
@@ -40,5 +43,29 @@ public class CricketService {
 	{
 		return rpos.findById(num);
 	}
+	public List<CricketModel> sort(String name)
+	 {
+	  return rpos.findAll(Sort.by(name));
+	 }
+		
+	 public List<CricketModel> paginate(int offset,int pageSize )
+	 {
+	  Page<CricketModel> c =rpos.findAll(PageRequest.of(offset,pageSize));
+	  return c.getContent();
+	 }
+	 public List<CricketModel> paginateAndSorting(int offset,int pageSize,String name)
+	 {
+	  Page<CricketModel> obj=rpos.findAll(PageRequest.of(offset,pageSize,Sort.by(name).ascending()));
+	  return obj.getContent();
+	 }
+	 public List<CricketModel> fetchCricketByNamePrefix(String prefix) 
+	 {
+	       return rpos.findByNameStartingWith(prefix);
+	 }
+	    public List<CricketModel> fetchCricketByNameSuffix(String suffix) 
+	 {
+	  return rpos.findByNameEndingWith(suffix);
+	 }
+
 
 }

@@ -1,0 +1,5 @@
+package com.cricket.demo.repository;
+
+public interface RepoLogin {
+
+}

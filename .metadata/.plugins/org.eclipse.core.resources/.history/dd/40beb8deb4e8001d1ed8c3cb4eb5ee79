@@ -1,0 +1,74 @@
+package com.cricket.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+
+import com.cricket.demo.model.CricketModel;
+import com.cricket.demo.repository.CricketRepository;
+
+@Service
+public class CricketService {
+	@Autowired
+
+ CricketRepository rpos;
+	public List<CricketModel> getAllCricket()
+	{
+		List<CricketModel> cricksList = rpos.findAll();
+		return cricksList;
+	}
+	public CricketModel saveCricket(CricketModel c)
+	{
+		return rpos.save(c);
+	}
+	public CricketModel updateCricket(CricketModel c)
+	{
+		return rpos.save(c);
+	}
+	public void deleteCricket(int number)
+	{
+		rpos.deleteById(number);
+	}
+	public CricketModel getCricket(int number)
+	{
+		CricketModel c = rpos.findById(number).get();
+		return c;
+	}
+	public Optional<CricketModel> getAllCricket(int num)
+	{
+		return rpos.findById(num);
+	}
+	public List<CricketModel> sort(String name)
+	 {
+	  return rpos.findAll(Sort.by(name));
+	 }
+		
+	 public List<CricketModel> paginate(int offset,int pageSize )
+	 {
+	  Page<CricketModel> c =rpos.findAll(PageRequest.of(offset,pageSize));
+	  return rpos.getContent();
+	 }
+	 public List<CricketModel> paginateAndSorting(int offset,int pageSize,String name)
+	 {
+	  Page<CricketModel> rpos.findAll(PageRequest.of(offset,pageSize,Sort.by(name).ascending()));
+	  return rpos.getContent();
+	 }
+	 public List<CricketModel> fetchDetolByNamePrefix(String prefix) 
+	 {
+	       return rpos.findByNameStartingWith(prefix);
+	 }
+	    public List<CricketModel> fetchDetolByNameSuffix(String suffix) 
+	 {
+	  return rpos.findByNameEndingWith(suffix);
+	 }
+		
+
+	}
+
+
+}

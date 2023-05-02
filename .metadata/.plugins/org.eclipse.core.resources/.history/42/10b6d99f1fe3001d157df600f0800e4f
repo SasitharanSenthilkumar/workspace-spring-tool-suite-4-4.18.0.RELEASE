@@ -1,6 +1,0 @@
-package com.cricket.demo.repository;
-
-@Repository
-public interface CricketRepository extend JpaRepository<Cricket,Integer>{
-
-}

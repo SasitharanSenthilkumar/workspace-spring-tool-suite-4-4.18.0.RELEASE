@@ -1,7 +1,0 @@
-package com.cricket.demo.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public class extends implements JpaRepository<T, ID> {
-
-}
